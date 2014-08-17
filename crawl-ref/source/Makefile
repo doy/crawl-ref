@@ -1712,7 +1712,7 @@ test-%: $(GAME) util/fake_pty builddb
 	@echo "Finished: $*"
 
 util/fake_pty: util/fake_pty.c
-	$(QUIET_HOSTCC)$(if $(HOSTCC),$(HOSTCC),$(CC)) -Wall $< -o $@ -lutil
+	$(QUIET_HOSTCC)$(if $(HOSTCC),$(HOSTCC),$(CC)) $(if $(TRAVIS),-DTRAVIS,) -Wall $< -o $@ -lutil
 
 # Should be not needed, but the race condition in bug #6509 is hard to fix.
 builddb: $(GAME)

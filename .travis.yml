@@ -1,0 +1,19 @@
+language: cpp
+compiler:
+    - clang
+    - gcc
+env:
+    - NOTHING=1
+    - FULLDEBUG=1
+    - USE_DGAMELAUNCH=1
+    - USE_DGAMELAUNCH=1 FULLDEBUG=1
+    - TILES=1
+    - TILES=1 FULLDEBUG=1
+    - WEBTILES=1
+    - WEBTILES=1 FULLDEBUG=1
+    - USE_DGAMELAUNCH WEBTILES=1
+    - USE_DGAMELAUNCH WEBTILES=1 FULLDEBUG=1
+git:
+    submodules: false
+install: perl .travis/deps.pl
+script: perl .travis/build.pl

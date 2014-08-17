@@ -30,7 +30,16 @@ static void slurp_output()
     while (poll(&pfd, 1, 60000) > 0) // 60 seconds with no output -> die die die!
     {
         if (read(tty, buf, sizeof(buf)) <= 0)
+#ifdef TRAVIS
+        {
+            puts(".");
+#endif
             break;
+#ifdef TRAVIS
+        }
+        else
+            puts("x");
+#endif
     }
 
     kill(crawl, SIGTERM); // shooting a zombie is ok, let's make sure it's dead
